@@ -1,55 +1,62 @@
 import React from 'react'
-import img1 from './../Imagenes/clark-douglas-Va6e3PrBRy4-unsplash.jpg'
-import img2 from './../Imagenes/slashio-photography-plwBDw9x5cE-unsplash.jpg'
-import img3 from './../Imagenes/steven-cordes-Rk8dItzbiaw-unsplash.jpg'
-import { ReactComponent as FlechaIzquierda } from './../Imagenes/iconmonstr-angel-left-thin.svg'
-import { ReactComponent as FlechaDerecha } from './../Imagenes/iconmonstr-angel-right-thin.svg'
+import {useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { getImages } from '../actions';
 import styled from 'styled-components';
 
 const Carrousel = () => {
-    return (
-        <ContenedorPrincipal>
-            <Slide> 
-                <img src={img1} alt="" />
-            <TextoSlide>
-                <p>15% de descuento en todos los productos</p>
-            </TextoSlide>
-            </Slide>
-            <Slide> 
-                <img src={img2} alt="" />
-            <TextoSlide>
-                <p>15% de descuento en todos los productos</p>
-            </TextoSlide>
-            </Slide>
-            <Slide> 
-                <img src={img3} alt="" />
-            <TextoSlide>
-                <p>15% de descuento en todos los productos</p>
-            </TextoSlide>
-            </Slide>
-            <div>
-                <button>
-                    <FlechaIzquierda />
-                </button>
-                <button>
-                    <FlechaDerecha />
-                </button>
-            </div>
 
-        </ContenedorPrincipal>
+    const dispatch = useDispatch();
+    const allImages = useSelector((state) => state.img);
+
+    useEffect (() => {
+        dispatch(getImages())
+    },[dispatch])
+
+
+    return (
+        <div>
+        <Titulo> PRODUCTOS DESTACADOS </Titulo>
+        
+        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+            <ol className="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                <img className="d-block w-100" src={allImages[0]} alt="First slide" />
+                </div>
+                <div className="carousel-item">
+                <img className="d-block w-100" src={allImages[1]} alt="Second slide" />
+                </div>
+                <div className="carousel-item">
+                <img className="d-block w-100" src={allImages[2]} alt="Third slide" />
+                </div>
+            </div>
+            <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+            </a>
+            <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+            </a>
+        </div>
+
+        </div>
     );
 }
 
-const ContenedorPrincipal = styled.div`
-
-`;
-
-const Slide = styled.div`
-
-`;
-
-const TextoSlide = styled.div`
-
+const Titulo = styled.p `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 13px 0px 5px 0px
 `;
 
 export default Carrousel;

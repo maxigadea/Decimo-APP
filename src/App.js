@@ -1,23 +1,22 @@
 import React from 'react';
-import Carrousel from './components/Carrousel'
 import './App.css';
-import '../src/styles/styles.css'
+import Navbar from './components/Navbar'
+import Carrousel from './components/Carrousel';
 import styled from 'styled-components';
+
 
 function App() {
   return (
-    <main>
-      <Titulo> PRODUCTOS DESTACADOS </Titulo>
+    <Main>
+      <Navbar />
       <Carrousel />
-    </main>
+    </Main>
   );
 }
 
-
-const Titulo = styled.p `
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 10px
-`;
 export default App;
+
+const Main = styled.div`
+  background: #fffff;
+  font-family: 'Noto Sans Display', sans-serif;
+`; 
