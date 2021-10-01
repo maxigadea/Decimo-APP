@@ -53,7 +53,7 @@ const Titulo = styled.p `
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
     margin: 13px 0px 5px 0px
